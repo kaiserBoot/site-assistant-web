@@ -1,0 +1,7 @@
+# app-ads.txt for 案件助手 / Site Assistant
+#
+# 目前尚未申請廣告聯播網帳號（例如 Google AdMob），因此還沒有任何真實的
+# Publisher ID 可以填入。此檔案先留空並保留這段說明，等實際申請帳號、拿到
+# 授權賣方資訊後，再依照 IAB Tech Lab app-ads.txt 規範補上對應行，例如：
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
