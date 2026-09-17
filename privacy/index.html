@@ -7,13 +7,24 @@
 <script>
   // 純靜態 GitHub Pages 無法用 Server Side 的 Accept-Language routing，
   // 改用瀏覽器語言（navigator.language）判斷後用相對路徑導向對應語言頁面。
-  // 規則：zh 開頭（zh／zh-TW／zh-HK／zh-Hant／zh-Hant-TW／zh-Hant-HK…全部
-  // 涵蓋，因為都是 "zh" 開頭）→ zh-hant，其餘一律 fallback 英文；跟 iOS 專案
-  // 實際使用的語系代碼 zh-Hant 統一命名，不使用 zh-tw。
-  // 未來新增日文時，在 else 前插入一個 lang.indexOf('ja') === 0 的判斷即可。
+  // 跟 iOS 專案實際使用的語系代碼 zh-Hant 統一命名，不使用 zh-tw。
+  // 未來新增日文時，在 isZhHant 判斷之後、target 賦值之前插入一個
+  // lang.indexOf('ja') === 0 的分支即可。
   (function () {
+    // 只有明確的繁體中文變體（zh-Hant／zh-TW／zh-HK／zh-MO，含各自帶更細分
+    // 地區碼的版本，例如 zh-Hant-TW）才導向 zh-hant/；簡體中文（zh-CN／
+    // zh-SG／zh-Hans 等）跟其餘所有語言一律 fallback 英文，避免簡體中文
+    // 使用者被誤導向繁體版本（2026-09-17 使用者訂正：原本任何 zh 開頭字串
+    // 都導向 zh-hant/，會連簡體中文也一起導向繁體）。未來新增簡體中文時，
+    // 另外新增 zh-hans/ 資料夾與對應判斷條件，不要讓 zh-hant 分支繼續承擔
+    // 所有 zh 系語言。
     var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    var target = lang.indexOf('zh') === 0 ? './zh-hant/' : './en/';
+    var isZhHant =
+      lang === 'zh-hant' || lang.indexOf('zh-hant-') === 0 ||
+      lang === 'zh-tw' || lang.indexOf('zh-tw-') === 0 ||
+      lang === 'zh-hk' || lang.indexOf('zh-hk-') === 0 ||
+      lang === 'zh-mo' || lang.indexOf('zh-mo-') === 0;
+    var target = isZhHant ? './zh-hant/' : './en/';
     location.replace(target);
   })();
 </script>
