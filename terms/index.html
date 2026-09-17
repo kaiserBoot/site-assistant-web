@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>使用條款 - 案件助手 Site Assistant</title>
+<script>
+  // 做法與 privacy/index.html 完全一致，見該檔案內註解。
+  (function () {
+    var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    var target = lang.indexOf('zh') === 0 ? './zh-hant/' : './en/';
+    location.replace(target);
+  })();
+</script>
+</head>
+<body>
+<p>Redirecting to your language / 正在導向對應語系頁面…</p>
+<p><a href="./zh-hant/">繁體中文</a> · <a href="./en/">English</a></p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>隱私權政策 - 案件助手 Site Assistant</title>
+<script>
+  // 純靜態 GitHub Pages 無法用 Server Side 的 Accept-Language routing，
+  // 改用瀏覽器語言（navigator.language）判斷後用相對路徑導向對應語言頁面。
+  // 規則：zh 開頭（zh／zh-TW／zh-HK／zh-Hant／zh-Hant-TW／zh-Hant-HK…全部
+  // 涵蓋，因為都是 "zh" 開頭）→ zh-hant，其餘一律 fallback 英文；跟 iOS 專案
+  // 實際使用的語系代碼 zh-Hant 統一命名，不使用 zh-tw。
+  // 未來新增日文時，在 else 前插入一個 lang.indexOf('ja') === 0 的判斷即可。
+  (function () {
+    var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    var target = lang.indexOf('zh') === 0 ? './zh-hant/' : './en/';
+    location.replace(target);
+  })();
+</script>
+</head>
+<body>
+<p>Redirecting to your language / 正在導向對應語系頁面…</p>
+<p><a href="./zh-hant/">繁體中文</a> · <a href="./en/">English</a></p>
+</body>
+</html>
