@@ -15,13 +15,14 @@
       lang === 'zh-tw' || lang.indexOf('zh-tw-') === 0 ||
       lang === 'zh-hk' || lang.indexOf('zh-hk-') === 0 ||
       lang === 'zh-mo' || lang.indexOf('zh-mo-') === 0;
-    var target = isZhHant ? './zh-hant/' : './en/';
+    var isJa = lang === 'ja' || lang.indexOf('ja-') === 0;
+    var target = isZhHant ? './zh-hant/' : (isJa ? './ja/' : './en/');
     location.replace(target);
   })();
 </script>
 </head>
 <body>
 <p>Redirecting to your language / 正在導向對應語系頁面…</p>
-<p><a href="./zh-hant/">繁體中文</a> · <a href="./en/">English</a></p>
+<p><a href="./zh-hant/">繁體中文</a> · <a href="./en/">English</a> · <a href="./ja/">日本語</a></p>
 </body>
 </html>

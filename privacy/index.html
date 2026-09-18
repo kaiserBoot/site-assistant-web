@@ -8,8 +8,6 @@
   // 純靜態 GitHub Pages 無法用 Server Side 的 Accept-Language routing，
   // 改用瀏覽器語言（navigator.language）判斷後用相對路徑導向對應語言頁面。
   // 跟 iOS 專案實際使用的語系代碼 zh-Hant 統一命名，不使用 zh-tw。
-  // 未來新增日文時，在 isZhHant 判斷之後、target 賦值之前插入一個
-  // lang.indexOf('ja') === 0 的分支即可。
   (function () {
     // 只有明確的繁體中文變體（zh-Hant／zh-TW／zh-HK／zh-MO，含各自帶更細分
     // 地區碼的版本，例如 zh-Hant-TW）才導向 zh-hant/；簡體中文（zh-CN／
@@ -24,13 +22,14 @@
       lang === 'zh-tw' || lang.indexOf('zh-tw-') === 0 ||
       lang === 'zh-hk' || lang.indexOf('zh-hk-') === 0 ||
       lang === 'zh-mo' || lang.indexOf('zh-mo-') === 0;
-    var target = isZhHant ? './zh-hant/' : './en/';
+    var isJa = lang === 'ja' || lang.indexOf('ja-') === 0;
+    var target = isZhHant ? './zh-hant/' : (isJa ? './ja/' : './en/');
     location.replace(target);
   })();
 </script>
 </head>
 <body>
 <p>Redirecting to your language / 正在導向對應語系頁面…</p>
-<p><a href="./zh-hant/">繁體中文</a> · <a href="./en/">English</a></p>
+<p><a href="./zh-hant/">繁體中文</a> · <a href="./en/">English</a> · <a href="./ja/">日本語</a></p>
 </body>
 </html>
